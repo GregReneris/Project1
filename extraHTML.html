@@ -1,0 +1,145 @@
+
+
+<!doctype html>
+<html lang="en">
+  <head>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/openlayers/openlayers.github.io@master/en/v6.1.1/css/ol.css" type="text/css">
+    <style>
+      .map {
+        height: 400px;
+        width: 100%;
+      }
+    </style>
+    <script src="https://cdn.jsdelivr.net/gh/openlayers/openlayers.github.io@master/en/v6.1.1/build/ol.js"></script>
+    <script src="jquery-3.4.1.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+    
+
+    <title>OpenLayers example</title>
+  </head>
+  <body>
+    <h2>My Map</h2>
+    <div id="map" class="map"></div>
+    <div id="map_overlay" class="map_overlay"></div>
+    <script type="text/javascript">
+
+      Seattle = { lat:47.60357, lon:-122.32945 };
+
+      //
+      // Initialize & setup the OpenLayer map
+      //
+
+      // create an OpenLayer map
+      var map = new ol.Map({
+        target: 'map',                    // put the map in this Div
+        layers: [
+          new ol.layer.Tile({
+            source: new ol.source.OSM()   // use Open Streets
+          })
+        ],
+        view: new ol.View({
+          center: ol.proj.fromLonLat([Seattle.lon, Seattle.lat]),   // Center on Seattle.  NOTE cords are in Longitude Latitude order
+          zoom: 8
+        })
+      });
+
+      // put the map_overlap Div ontop of the map.  we use this for the tooltip while hovering on a resturant marker
+      var mapOverlay = new ol.Overlay({
+        element: document.getElementById('map_overlay'), // transfer to jquery
+        positioning: 'bottom-left'
+      });
+      mapOverlay.setMap(map);
+
+      // hook hover & click events
+      map.on(['pointermove', 'singleclick'], function(evt) {
+
+        // check what ol.Feature the mouse is on (if  any)
+        var feature = map.forEachFeatureAtPixel(evt.pixel, function(feature) {          
+          mapOverlay.setPosition(evt.coordinate);                   // set the Div positions to the mouse position          
+          mapOverlay.getElement().innerHTML = feature.get('name');    // we stored the tooltip text we want in Feature.name
+
+          if (evt.type == "singleclick"){
+            console.log("User clicked on: ");
+            console.log(feature.get('resturant'));
+          }
+
+          return feature;
+        });
+
+        // turn the tooltip text on or off
+        mapOverlay.getElement().style.display = feature ? '' : 'none';
+        document.body.style.cursor = feature ? 'pointer' : '';
+      });
+
+      //
+      // Get some data
+      //
+
+      zomatoApiKey = "a8b1c7f2b94bb788e758da420a09e59b";
+      zomatoCount  = 20;
+      zomatoQuery  = "asian";
+      $.ajax({
+        "url": "https://developers.zomato.com/api/v2.1/search" +
+                "?entity_type=city" +
+                "&q="     + encodeURIComponent(zomatoQuery) + 
+                "&count=" + zomatoCount + 
+                "&lat="   + Seattle.lat + //switch to our get lat
+                "&lon="   + Seattle.lon + // switch to our get lon        
+                "&apikey=" + zomatoApiKey
+        
+        }).then(function(response) {
+
+          // make an ol.Feature for each resturant
+          mapFeatures =[] // array
+          polyRing = [] // array
+          response.restaurants.forEach( function(r){
+            r = r.restaurant
+            coords = [ Number(r.location.longitude), Number(r.location.latitude) ];                        
+            coords = ol.proj.fromLonLat( coords );      // convert 
+            feature = new ol.Feature({ 
+                geometry: new ol.geom.Point(coords),    // where to put the feature
+                  resturant: r,           // the resturant this ol.Feature is for
+                  name: r.name            // the hover tool tip text 
+            });
+            mapFeatures.push(feature);    // add the feature to our array
+            polyRing.push( coords )
+          });
+          
+          if (mapFeatures.length > 0){
+            // make an ol.Layer for all the Features
+            vectorLayer = new ol.layer.Vector({
+              source:new ol.source.Vector({
+                features: mapFeatures,        // add these ol.Features to the lary
+              }),
+              style: new ol.style.Style({
+                image: new ol.style.Icon({
+                  anchor: [0.5, 0.5],
+                  anchorXUnits: "fraction",
+                  anchorYUnits: "fraction",
+                  src: "https://upload.wikimedia.org/wikipedia/commons/e/ec/RedDot.svg"
+                })
+              })
+            }); 
+            
+          // add the layer to the map          
+          map.addLayer( vectorLayer );   
+
+          // make it a ring by adding the first item to the tail of the list
+          polyRing.push(polyRing[0]);                    
+          map.getView().fit( 
+            new ol.geom.Polygon( [polyRing] ),            
+            { 
+              duration: 1000,               // zoom view over 1 second
+              maxZoom: 15,                  // don't zoom down to 1 dot
+              padding: [ 20, 20, 20, 20 ]   // boarder (in pixels)
+              
+            });            
+        }
+      });    
+
+
+    </script>
+    
+    <button onclick="clickMe()">Test</button>
+  </body>
+</html>
