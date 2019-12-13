@@ -52,9 +52,9 @@ function documentZomato (){
   // this is the geolocation function. Currently have it running on a click button.
   x.text("Latitude: " + position.coords.latitude + 
   "<br>Longitude: " + position.coords.longitude);
-  // AGmap(lonVar,latVar)
+  
 }
-function AGmap () {
+
   var map = new ol.Map({
     target: 'map',
     layers: [
@@ -67,4 +67,4 @@ function AGmap () {
       zoom: 10
     })
   });
-}
+
