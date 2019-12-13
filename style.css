@@ -8,3 +8,7 @@
 #main-footer {
     background-color: teal;
 }
+.map {
+    height: 400px;
+    width: 100%;
+  }
