@@ -1,35 +1,9 @@
 
 
 
-//I am inserting the variables related to Yelp below.
-// var yelpURL = ;
-var yelpAPIKey = "QvK7So9Lc_c8kU378kzQf6dIMUnsjRhellpZwV-CdIPnUpAuRLm3bUqvNLqf9wY74ioOzqWdFRtt-pWemMsqXI9OLxPLRNt5JuvRtEmjR72fQjydjIEMGAlfMqfyXXYx"
+//I am inserting the variables related to our needed calls below.
 // var categoryOfFood =    ; 
 // var locationInput =     ;
-
-
-
-// var queryURL = "https://api.yelp.com/v3/";    
-var queryURL = `https://api.yelp.com/v3/autocomplete?text=del&latitude=47.6205&longitude=122.3493`
-
-
-function search(){
-
-    
-    // $.ajax({
-    //     url: queryURL,
-    //     method: "GET",
-    //     headers: {
-    //         "accept": "application/json",
-    //         "Access-Control-Allow-Origin":"*",
-    //         "Authorization": `Bearer ${yelpAPIKey}`
-    //     }
-    // }).then(function(res) {
-    //     var results = res.data
-    //     console.log(results);
-    // });
-    
-};
 
 
 //Zomato
@@ -73,26 +47,8 @@ $.ajax({
   });
 
 
-//find users geoLocation
-// var x = document.getElementById("demo");
 
-// function getLocation() {
-//   if (navigator.geolocation) {
-//     navigator.geolocation.getCurrentPosition(showPosition);
-//   } else { 
-//     console.log ("Geolocation is not supported by this browser.");
-//   }
-// }
-
-// function showPosition(position) {
-//   x.innerHTML = "Latitude: " + position.coords.latitude + 
-//   "<br>Longitude: " + position.coords.longitude;
-// }
-
-
-
-//
-
+// this is the geolocation function. Currently have it running on a click button.
 function getLocation() {
   if (navigator.geolocation) {
     navigator.geolocation.getCurrentPosition(showPosition);
@@ -107,21 +63,3 @@ function showPosition(position) {
   x.text("Latitude: " + position.coords.latitude + 
   "<br>Longitude: " + position.coords.longitude);
 }
-
-
-
-
-
-// function searchFood(){
-
-    
-//     // this is the yelp AJAX call.
-//     $.ajax({
-//         url: yelpURL,
-//         method: "GET" https://api.yelp.com/v3/businesses/search;
-//     }).then(function(response) {
-        
-        
-        
-//     });
-// };

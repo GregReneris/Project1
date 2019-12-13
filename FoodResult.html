@@ -1,19 +1,30 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <script src="jquery-3.4.1.min.js"></script>
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <meta http-equiv="X-UA-Compatible" content="ie=edge">
+        <script src="https://code.jquery.com/jquery.js"></script>
+        <script src="script.js"></script>
     
-    <title>Food Search</title>
-
-</head>
-<body>
+        <title>Food Result</title>
+    </head>
+    <body>
+        
     
-
-
-
+    <button id="demo" onclick="getLocation()"> 
+       Do not fear, I am here!
+    </button>
+    
+    <button id="searchTest" onclick="search()"> 
+        Search!
+    </button>
+    
+    <button id="searchTest" onclick="zomatoSearch()"> 
+        Search Zomato!
+    </button>
+    <p id="coord">placeholder</p>
+    
 
 </body>
 </html>
