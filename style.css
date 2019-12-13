@@ -11,4 +11,8 @@
 .map {
     height: 400px;
     width: 100%;
-  }
+}
+#logo {
+    margin: 0 auto;
+    padding-left: 5px;
+}
