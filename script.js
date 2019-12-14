@@ -24,6 +24,7 @@ function documentZomato (){
     "<br>Longitude: " + position.coords.longitude);
    latVar = position.coords.latitude;
    lonVar = position.coords.longitude;
+   map(lonVar, latVar)
   }
   zomatoSearch();
   function zomatoSearch(){
@@ -50,11 +51,11 @@ function documentZomato (){
   //   console.log(response)
   // });
   // this is the geolocation function. Currently have it running on a click button.
-  x.text("Latitude: " + position.coords.latitude + 
-  "<br>Longitude: " + position.coords.longitude);
+  // x.text("Latitude: " + position.coords.latitude + 
+  // "<br>Longitude: " + position.coords.longitude);
   
 }
-
+function map(lonVar, latVar){
   var map = new ol.Map({
     target: 'map',
     layers: [
@@ -63,8 +64,9 @@ function documentZomato (){
       })
     ],
     view: new ol.View({
-      center: ol.proj.fromLonLat([ -122.335167, 47.608013]),
+      center: ol.proj.fromLonLat([ lonVar, latVar]),
       zoom: 10
     })
   });
-
+}
+documentZomato()
