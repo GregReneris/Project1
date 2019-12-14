@@ -18,6 +18,15 @@ nav .logo{
   margin-left: 50px;
 }
 
+.pic{
+  height: 100px;
+  width: 100px;
+  border-radius: 50px;
+  /* -ms-flex-item-align: center; */
+  /* margin: 0 auto; */
+  /* padding-left: 20%; */
+}
+
 .slider .btn{
   margin-top:20px;
   padding:0 50px;
