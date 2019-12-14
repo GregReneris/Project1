@@ -9,8 +9,10 @@
   <!-- CSS  -->
   <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
   <link href="css/materialize.css" type="text/css" rel="stylesheet" media="screen,projection" />
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
   <link href="css/style.css" type="text/css" rel="stylesheet" media="screen,projection" />
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.11.2/css/all.css" integrity="sha256-46qynGAkLSFpVbEBog43gvNhfrOj+BmwXdxFgVK/Kvc=" crossorigin="anonymous" />
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/openlayers/openlayers.github.io@master/en/v6.1.1/css/ol.css" type="text/css">
 </head>
 
 <body>
@@ -125,7 +127,7 @@
     <br><br>
   </div>
   <!-- Section:Food Choices -->
-
+<!-- food cards -->
   <!-- option 1 -->
   <section id="start" class="section section-card">
     <h6 class="center">Check this out</h6>
@@ -199,6 +201,10 @@
     </div>
 
   </section>
+  <section class="map">
+    <div id="map" class="map"></div>
+    <div id="map_overlay" class="map_overlay"></div>
+  </section>
 
 
 <!-- Section: Follow social media -->
@@ -263,6 +269,8 @@
 
 
   <!--  Scripts-->
+  <script src="https://cdn.jsdelivr.net/gh/openlayers/openlayers.github.io@master/en/v6.1.1/build/ol.js"></script>
+    <script src="style.js"></script>
   <script src="https://code.jquery.com/jquery-2.1.1.min.js"></script>
   <script src="js/materialize.js"></script>
   <script src="js/init.js"></script>
