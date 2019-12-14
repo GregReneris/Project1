@@ -102,8 +102,13 @@ function zomatoSearch(){
       response.restaurants.forEach(element => {
         restaurants.push(element.restaurant);    
       });
+      restaurants.sort(function (b, a){
+        diff = ( Number(a.user_rating.aggregate_rating) - Number(b.user_rating.aggregate_rating) );
+        return diff;
+      });
     
     createCards(restaurants);
+    updateMap(restaurants);
       
      console.log("*");
      console.log(response);
@@ -111,6 +116,14 @@ function zomatoSearch(){
   
   
 }
+function updateMap(restaurants){
+  restaurants.forEach (r=> {
+      gpsCoords =[Number(r.location.longitude), Number(r.location.latitude)];
+      //mapCoords = ol.proj.fromLonLat(gpsCoords);
+
+  })
+
+};
 
 function createCards(restaurants){
   cards = $("#cards");
@@ -122,6 +135,7 @@ function createCards(restaurants){
     // html.append( $('<div class="one">').text(r.name)  );
     html.append( $('<div class="one">') ).append( $('<a>').attr("href", r.url).text(r.name)) ;
     html.append( $('<div class="one">').text(r.name)  );
+    html.append( $('<div class="one">').text(r.user_rating.aggregate_rating)  );
     html.append( $('<div class="one">').text(r.phone_numbers)  );
     html.append( $('<div class="one">').text(r.location.address)  );
     html.append( $('<div class="one">').text(r.location.city)  );
@@ -135,6 +149,8 @@ function createCards(restaurants){
     cards.append(html);
     console.log(r.name);
   });
+
+ 
 };
 
 
