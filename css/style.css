@@ -36,4 +36,8 @@ nav .logo{
 .section-follow .fa-4x{
   margin: 5px 10px;
 }
+.map {
+  height: 400px;
+  width: 100%;
+}
 
