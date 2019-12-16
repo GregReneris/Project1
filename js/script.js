@@ -3,7 +3,17 @@
 var zomatoApiKey = "a8b1c7f2b94bb788e758da420a09e59b"
 var latVar;
 var lonVar;
-
+var pageOne=$(".page-one")
+var pageTwo=$(".page-two")
+var pageThree=$(".page-three")
+var mapPage=$(".map-on-page")
+var landingPageButton=$(".button-1")
+var foodButton=$("food-button")
+var italian=$(".italian")
+var american=$(".american")
+var asian=$(".asian")
+var mexican=$(".mexican")
+getLocation()
 function getLocation() {
   console.log("Getting Location")
   if (navigator.geolocation) {
@@ -11,25 +21,71 @@ function getLocation() {
   } else { 
     x.text = "Geolocation is not supported by this browser.";
   }
+  showPosition()
 }
 
 function showPosition(position) {
   var x = $("#coord");
+  console.log(position.coords.latitude);
   
   x.text("Latitude: " + position.coords.latitude + 
   "<br>Longitude: " + position.coords.longitude);
   latVar = position.coords.latitude;
   lonVar = position.coords.longitude;
+  AGmap()
 }
 
 
 function documentZomato (){
   getLocation(showPosition);
-    var zomatoQueryURL = "https://developers.zomato.com/api/v2.1/categories?"+zomatoApiKey
+  
+  //I am inserting the variables related to our needed calls below.
+  // var categoryOfFood =    ; 
+  // var locationInput =     ;
+  
+  
+  //Zomato
+  // https://developers.zomato.com/api/v2.1/categories?apikey=a8b1c7f2b94bb788e758da420a09e59b
+  
+  var zomatoQueryURL = "https://developers.zomato.com/api/v2.1/categories?"+zomatoApiKey
+  
+  //var zomatoCuisine = $('buttonInput').click(val);
+  // var DineIn = dineInButton
+  
+
+
+
+  
+
+  
+  // https://developers.zomato.com/api/v2.1/search?entity_type=city&q=asian&count=4&lat=47.60357&lon=-122.32945 This one has lon and lat as examples. 
+  
+  // this is a search for a cuisine test
+  // $.ajax({
+  //   "url": "https://developers.zomato.com/api/v2.1/cuisines?city_id=279&"+zomatoApiKey
+  // }).then(function(response) {
+    
+  //   console.log("cusinetest");
+  //   console.log(response);
+    
+  // });
+  // // this is a test of asian cuisine count 9.
+  // $.ajax({
+  //   "url": "https://developers.zomato.com/api/v2.1/search?entity_id=279&entity_type=city&q=asian&count=9&"+zomatoApiKey
+  // }).then(function(response) {
+    
+  //   console.log("* asian cusine");
+  //   console.log(response)
+    
+  // });
+  
+  
+  
+  // this is the geolocation function. Currently have it running on a click button.
 
   x.text("Latitude: " + position.coords.latitude + 
   "<br>Longitude: " + position.coords.longitude);
-  // AGmap(lonVar,latVar)
+  
 }
 
 function zomatoSearch(){
@@ -113,7 +169,6 @@ function createCards(restaurants){
 
 
 function AGmap(){
-
   var map = new ol.Map({
     target: 'map',
     layers: [
@@ -122,64 +177,22 @@ function AGmap(){
       })
     ],
     view: new ol.View({
-      center: ol.proj.fromLonLat([ -122.335167, 47.608013]),
-      zoom: 10
+      center: ol.proj.fromLonLat([ lonVar, latVar]),
+      zoom: 12
     })
+    
   });
+
 }
+function hidingPages(){
+  // first page
+  landingPageButton.on("click", function(){
+pageOne.hide()
+pageTwo.show()
+  })
+  foodButton.on("click", function(){
+    pageTwo.hide()
+    pageThree.show()
+  })
 
-var button = document.getElementById("toggle");
-var target = document.getElementById("target");
-var bool = true;
-
-// showing the card beneath the american food card on button click
-new Vue({
-  el: '#start',
-
-  methods: {
-    say: function (message) {
-      alert("yooo")
-    },
-
-    showFoods: function(whichGroup) {
-      $( "#" + whichGroup + "Foods" ).show(500);
-
-      myCardId = whichGroup + "Card";
-      cards = $(".food-card");
-      for(let index=0; index < cards.length; ++index) {
-        id = $(cards[index]).attr('id');
-        console.log(id);
-        if ( id != myCardId ) {
-          $("#"+id).hide(500);
-          //document.getElementById(id).hidden = true;
-        }
-      }       
-    },
-
-    search: function(queryString) {
-      alert("search for" + queryString)
-    }
-
-  }
-})
-
-new Vue({
-  el: '#example-4',
-  methods: {
-    say: function (message) {
-      alert("yooo2")
-    }
-  }
-})
-
-// function displayToggle() {
-//   if (bool) {
-//       target.setAttribute("class", "hide")
-//       bool = false;
-//   } else {
-//     target.setAttribute("class", "show")
-//     bool = true;
-//   }
-// }
-
-// button.addEventListener("click", displayToggle, false);
+}
