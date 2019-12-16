@@ -1,3 +1,4 @@
+
 function documentZomato (){
   getLocation(showPosition);
   //I am inserting the variables related to our needed calls below.
@@ -5,12 +6,14 @@ function documentZomato (){
   // var locationInput =     ;
   //Zomato
   // https://developers.zomato.com/api/v2.1/categories?apikey=a8b1c7f2b94bb788e758da420a09e59b
+
   var zomatoQueryURL = "https://developers.zomato.com/api/v2.1/categories?"+zomatoApiKey
   var zomatoApiKey = "apikey=a8b1c7f2b94bb788e758da420a09e59b"
   var zomatoCuisine = "BBQ" //clickedButton
   var latVar;
   var lonVar;
   // var DineIn = dineInButton
+  
   function getLocation() {
     if (navigator.geolocation) {
       navigator.geolocation.getCurrentPosition(showPosition);
@@ -18,6 +21,7 @@ function documentZomato (){
       x.text = "Geolocation is not supported by this browser.";
     }
   }
+
   function showPosition(position) {
     var x = $("#coord");
     x.text("Latitude: " + position.coords.latitude + 
@@ -25,6 +29,7 @@ function documentZomato (){
    latVar = position.coords.latitude;
    lonVar = position.coords.longitude;
   }
+
   zomatoSearch();
   function zomatoSearch(){
     $.ajax({
@@ -39,6 +44,7 @@ function documentZomato (){
   // $.ajax({
   //   "url": "https://developers.zomato.com/api/v2.1/cuisines?city_id=279&"+zomatoApiKey
   // }).then(function(response) {
+
   //   console.log("cusinetest");
   //   console.log(response);
   // });
