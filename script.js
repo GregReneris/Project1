@@ -25,54 +25,11 @@ function showPosition(position) {
 
 function documentZomato (){
   getLocation(showPosition);
-  
-  //I am inserting the variables related to our needed calls below.
-  // var categoryOfFood =    ; 
-  // var locationInput =     ;
-  
-  
-  //Zomato
-  // https://developers.zomato.com/api/v2.1/categories?apikey=a8b1c7f2b94bb788e758da420a09e59b
-  
-  var zomatoQueryURL = "https://developers.zomato.com/api/v2.1/categories?"+zomatoApiKey
-  
-  //var zomatoCuisine = $('buttonInput').click(val);
-  // var DineIn = dineInButton
-  
-
-
-
-  
-
-  
-  // https://developers.zomato.com/api/v2.1/search?entity_type=city&q=asian&count=4&lat=47.60357&lon=-122.32945 This one has lon and lat as examples. 
-  
-  // this is a search for a cuisine test
-  // $.ajax({
-  //   "url": "https://developers.zomato.com/api/v2.1/cuisines?city_id=279&"+zomatoApiKey
-  // }).then(function(response) {
-    
-  //   console.log("cusinetest");
-  //   console.log(response);
-    
-  // });
-  // // this is a test of asian cuisine count 9.
-  // $.ajax({
-  //   "url": "https://developers.zomato.com/api/v2.1/search?entity_id=279&entity_type=city&q=asian&count=9&"+zomatoApiKey
-  // }).then(function(response) {
-    
-  //   console.log("* asian cusine");
-  //   console.log(response)
-    
-  // });
-  
-  
-  
-  // this is the geolocation function. Currently have it running on a click button.
+    var zomatoQueryURL = "https://developers.zomato.com/api/v2.1/categories?"+zomatoApiKey
 
   x.text("Latitude: " + position.coords.latitude + 
   "<br>Longitude: " + position.coords.longitude);
-  AGmap(lonVar,latVar)
+  // AGmap(lonVar,latVar)
 }
 
 function zomatoSearch(){
