@@ -73,6 +73,7 @@ var button = document.getElementById("toggle");
 var target = document.getElementById("target");
 var bool = true;
 
+// showing the card beneath the american food card on button click
 new Vue({
   el: '#example-3',
   methods: {
