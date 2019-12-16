@@ -126,57 +126,99 @@
 
 
   <!-- Section:Food Cards -->
-
-  <!-- Card 1 -->
   <section id="start" class="section section-card page-two">
     <h6 class="center">Check this out</h6>
     <h3 class="center">Food Options</h3>
     <div class="row">
-      <div class="col s12 m6 l3">
+
+      <!-- Card 1 -->
+      <div class="col s12 m6 l3 food-card" id="AmericanCard">
         <div class="card">
-          <div class="card-image">
+          <div class="card-image" id="example-3old">
             <img src="img/american food.jpg">
             <span class="card-title">American Food</span>
-            <a class="btn-floating halfway-fab waves-effect waves-light black american"><i
-                class="material-icons">add</i></a>
+            
+            <a class="btn-floating halfway-fab waves-effect waves-light black american">
+              <i class="material-icons" v-on:click="showFoods('American')">add</i></a>
           </div>
         </div>
+
+        <div class="food-group" id="AmericanFoods" style="display: none">
+            <a class="waves-effect waves-light btn" v-on:click="search('Burgers')">Burgers</a>
+            <a class="waves-effect waves-light btn" v-on:click="search('BBQ')">BBQ</a>            
+        </div>
+
       </div>
+
+
       <!-- Card 2 -->
-      <div class="col s12 m6 l3">
+      <div class="col s12 m6 l3 food-card" id="ItalianCard">
         <div class="card">
           <div class="card-image">
             <img src="img/Italian-food.jpeg">
             <span class="card-title">Italian Food</span>
-            <a class="btn-floating halfway-fab waves-effect waves-light black italian"><i
-                class="material-icons">add</i></a>
+            <a class="btn-floating halfway-fab waves-effect waves-light black italian">
+              <i class="material-icons" v-on:click="showFoods('Italian')">add</i></a>              
           </div>
         </div>
+
+        <div class="food-group" id="ItalianFoods" style="display: none">
+            <a class="waves-effect waves-light btn" v-on:click="search('Pasta')">Pasta</a>
+            <a class="waves-effect waves-light btn" v-on:click="search('Pizza')">Pizza</a>            
+        </div>
+        
       </div>
 
       <!-- Card 3 -->
-      <div class="col s12 m6 l3">
+      <div class="col s12 m6 l3 food-card" id="AsianCard">
         <div class="card">
           <div class="card-image">
             <img src="img/asianfood.jpg">
             <span class="card-title">Asian Food</span>
-            <a class="btn-floating halfway-fab waves-effect waves-light black asian"><i
-                class="material-icons">add</i></a>
+            <a class="btn-floating halfway-fab waves-effect waves-light black asian"><i class="material-icons" v-on:click="showFoods('Asian')">add</i></a>
           </div>
         </div>
+        
+        <div class="food-group" id="AsianFoods" style="display: none">
+          <a class="waves-effect waves-light btn" v-on:click="search('Thai')">Thai</a>
+          <a class="waves-effect waves-light btn" v-on:click="search('Teriyaki')">Teriyaki</a>
+
+      </div>
       </div>
       <!-- Card 4 -->
-      <div class="col s12 m6 l3">
+      <div class="col s12 m6 l3 food-card" id="MexicanCard">
         <div class="card">
           <div class="card-image">
             <img src="img/mexicanfood.png">
             <span class="card-title">Mexican Food</span>
             <a class="btn-floating halfway-fab waves-effect waves-light black mexican"><i
-                class="material-icons">add</i></a>
+                class="material-icons" v-on:click="showFoods('Mexican')">add</i></a>
+          </div>
+        </div>
+        <div class="food-group" id="MexicanFoods" style="display: none">
+          <a class="waves-effect waves-light btn" v-on:click="search('Tacos')">Tacos</a>
+          <a class="waves-effect waves-light btn" v-on:click="search('Spanish')">Spanish</a>  
+      </div>
+    </div>
+  </section>
+
+
+  <!-- Card 1-1 -->
+  <section id="start one-one" class="section section-card page-two">
+    <div class="row">
+      <div class="col s12 m6 l3">
+        <div class="card">
+          <div class="card-image" id="example-4">
+            <img src="img/american food.jpg">
+            <span class="card-title">Placeholder</span>
+        
+            <a class="btn-floating halfway-fab waves-effect waves-light black american">
+              <i class="material-icons" v-on:click="say()">add</i>
+
+            </a>
           </div>
         </div>
       </div>
-
     </div>
 
   </section>
@@ -347,9 +389,11 @@
   <!--  Scripts-->
   <script src="https://cdn.jsdelivr.net/gh/openlayers/openlayers.github.io@master/en/v6.1.1/build/ol.js"></script>
     <script src="./js/script.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
   <script src="https://code.jquery.com/jquery-2.1.1.min.js"></script>
   <script src="js/materialize.js"></script>
   <script src="js/init.js"></script>
+  <script src="script.js"></script>
 
 </body>
 

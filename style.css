@@ -1,3 +1,12 @@
+
+#food-group {
+    display: none;
+    background-color: teal;
+    text-decoration: underline;
+}
+
+
+
 #intro-card {
     -ms-flex-item-align: center;
 }
@@ -16,3 +25,4 @@
     margin: 0 auto;
     padding-left: 5px;
 }
+
