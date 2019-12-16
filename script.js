@@ -69,6 +69,10 @@ function AGmap () {
   });
 }
 
+var button = document.getElementById("toggle");
+var target = document.getElementById("target");
+var bool = true;
+
 new Vue({
   el: '#start',
 
@@ -107,3 +111,15 @@ new Vue({
     }
   }
 })
+
+// function displayToggle() {
+//   if (bool) {
+//       target.setAttribute("class", "hide")
+//       bool = false;
+//   } else {
+//     target.setAttribute("class", "show")
+//     bool = true;
+//   }
+// }
+
+// button.addEventListener("click", displayToggle, false);

@@ -38,15 +38,13 @@ nav .logo{
   color: white;
 }
 
-/* .img-with-text {
-  text-align: justify;
-  width: 100px;
-} */
+.hide {
+  display: none;
+}
 
-/* .img-with-text img {
-  display: block;
-  margin: 0 auto;
-} */
+.show {
+  display:block;
+}
 
 .item{
   width:100px;
