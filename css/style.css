@@ -52,4 +52,38 @@ nav .logo{
   background-color:black;
   cursor: pointer;
   color: azure;
+.pic {
+  height: 100px;
+  width: 100px;
+  border-radius: 50px;
+}
+
+.pic-name {
+  color: white;
+}
+
+/* .img-with-text {
+  text-align: justify;
+  width: 100px;
+} */
+
+/* .img-with-text img {
+  display: block;
+  margin: 0 auto;
+} */
+
+.item{
+  width:100px;
+  text-align:center;
+  display:block;
+  background-color: transparent;
+  border: 1px solid transparent;
+  margin-right: 10px;
+  margin-bottom: 1px;
+  float: left;
+}
+
+#index-gallery{
+  /* width:465px; */
+  padding-left: 33%;
 }
