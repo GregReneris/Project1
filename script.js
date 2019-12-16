@@ -75,16 +75,40 @@ var bool = true;
 
 // showing the card beneath the american food card on button click
 new Vue({
-  el: '#example-3',
+  el: '#start',
+
   methods: {
-    say: function displayToggle() {
-      if (bool) {
-          target.setAttribute("class", "card hide")
-          bool = false;
-      } else {
-        target.setAttribute("class", "card show")
-        bool = true;
-      }
+    say: function (message) {
+      alert("yooo")
+    },
+
+    showFoods: function(whichGroup) {
+      $( "#" + whichGroup + "Foods" ).show(500);
+
+      myCardId = whichGroup + "Card";
+      cards = $(".food-card");
+      for(let index=0; index < cards.length; ++index) {
+        id = $(cards[index]).attr('id');
+        console.log(id);
+        if ( id != myCardId ) {
+          $("#"+id).hide(500);
+          //document.getElementById(id).hidden = true;
+        }
+      }       
+    },
+
+    search: function(queryString) {
+      alert("search for" + queryString)
+    }
+
+  }
+})
+
+new Vue({
+  el: '#example-4',
+  methods: {
+    say: function (message) {
+      alert("yooo2")
     }
   }
 })
