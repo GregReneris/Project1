@@ -9,9 +9,12 @@
   <!-- CSS  -->
   <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
   <link href="css/materialize.css" type="text/css" rel="stylesheet" media="screen,projection" />
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
   <link href="css/style.css" type="text/css" rel="stylesheet" media="screen,projection" />
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.11.2/css/all.css"
-    integrity="sha256-46qynGAkLSFpVbEBog43gvNhfrOj+BmwXdxFgVK/Kvc=" crossorigin="anonymous" />
+
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.11.2/css/all.css" integrity="sha256-46qynGAkLSFpVbEBog43gvNhfrOj+BmwXdxFgVK/Kvc=" crossorigin="anonymous" />
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/openlayers/openlayers.github.io@master/en/v6.1.1/css/ol.css" type="text/css">
+
 </head>
 
 <body>
@@ -177,6 +180,12 @@
     </div>
 
   </section>
+
+  <!-- TODO: MOVE THIS (POPULATES THE MAP) -->
+  <section class="map">
+    <div id="map" class="map"></div>
+    <div id="map_overlay" class="map_overlay"></div>
+  </section>
   <br>
   <br>
   <br>
@@ -247,6 +256,8 @@
         </div>
       </div>
 
+        </div>
+      </div>
     </div>
   </section>
 
@@ -291,19 +302,19 @@
       <!-- picture of greg -->
       <div class="item center">
         <img class="pic" src="https://ca.slack-edge.com/TQ1KWR5HU-UQ9JQAPNV-65e2bbe171a9-512">
-        <a href="https://github.com/GregReneris" class="pic-name">Greg Reneris</a>
+        <a href="https://github.com/GregReneris" class="pic-name">Greg</a>
       </div>
 
       <!-- picture of jaque -->
       <div class="item center">
         <img class="pic" src="img/jaque.jpg.jpg">
-        <a href="#" class="pic-name">Jaque</a>
+        <a href="https://github.com/Jupton2020" class="pic-name">Jaque</a>
       </div>
 
       <!-- picture of nate -->
       <div class="item center">
         <img class="pic" src="https://ca.slack-edge.com/TQ1KWR5HU-UQKNHH7QE-5caa6237aac7-512">
-        <a href="https://github.com/jittel" class="pic-name">Nate Ginn</a>
+        <a href="https://github.com/jittel" class="pic-name">Nate</a>
       </div>
     </div>
   </section>
@@ -333,7 +344,9 @@
   </footer>
 
 
-  <!--  Scripts -->
+  <!--  Scripts-->
+  <script src="https://cdn.jsdelivr.net/gh/openlayers/openlayers.github.io@master/en/v6.1.1/build/ol.js"></script>
+    <script src="./js/script.js"></script>
   <script src="https://code.jquery.com/jquery-2.1.1.min.js"></script>
   <script src="js/materialize.js"></script>
   <script src="js/init.js"></script>
