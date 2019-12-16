@@ -70,10 +70,40 @@ function AGmap () {
 }
 
 new Vue({
-  el: '#example-3',
+  el: '#start',
+
   methods: {
     say: function (message) {
       alert("yooo")
+    },
+
+    showFoods: function(whichGroup) {
+      $( "#" + whichGroup + "Foods" ).show(500);
+
+      myCardId = whichGroup + "Card";
+      cards = $(".food-card");
+      for(let index=0; index < cards.length; ++index) {
+        id = $(cards[index]).attr('id');
+        console.log(id);
+        if ( id != myCardId ) {
+          $("#"+id).hide(500);
+          //document.getElementById(id).hidden = true;
+        }
+      }       
+    },
+
+    search: function(queryString) {
+      alert("search for" + queryString)
+    }
+
+  }
+})
+
+new Vue({
+  el: '#example-4',
+  methods: {
+    say: function (message) {
+      alert("yooo2")
     }
   }
 })
