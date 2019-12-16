@@ -69,27 +69,33 @@ function AGmap () {
   });
 }
 
-new Vue({
-  el: '#example-3',
-  methods: {
-    say: function (message) {
-      // alert("yooo")
-    }
-  }
-})
-
 var button = document.getElementById("toggle");
 var target = document.getElementById("target");
 var bool = true;
 
-function displayToggle() {
-  if (bool) {
-      target.setAttribute("class", "hide")
-      bool = false;
-  } else {
-    target.setAttribute("class", "show")
-    bool = true;
+new Vue({
+  el: '#example-3',
+  methods: {
+    say: function displayToggle() {
+      if (bool) {
+          target.setAttribute("class", "card hide")
+          bool = false;
+      } else {
+        target.setAttribute("class", "card show")
+        bool = true;
+      }
+    }
   }
-}
+})
 
-button.addEventListener("click", displayToggle, false);
+// function displayToggle() {
+//   if (bool) {
+//       target.setAttribute("class", "hide")
+//       bool = false;
+//   } else {
+//     target.setAttribute("class", "show")
+//     bool = true;
+//   }
+// }
+
+// button.addEventListener("click", displayToggle, false);
