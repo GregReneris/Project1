@@ -38,12 +38,28 @@ nav .logo{
   color: white;
 }
 
-.img-with-text {
+/* .img-with-text {
   text-align: justify;
   width: 100px;
+} */
+
+/* .img-with-text img {
+  display: block;
+  margin: 0 auto;
+} */
+
+.item{
+  width:100px;
+  text-align:center;
+  display:block;
+  background-color: transparent;
+  border: 1px solid transparent;
+  margin-right: 10px;
+  margin-bottom: 1px;
+  float: left;
 }
 
-.img-with-text img {
-  /* display: block; */
-  margin: 0 auto;
+#index-gallery{
+  /* width:465px; */
+  padding-left: 33%;
 }
