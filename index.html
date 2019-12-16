@@ -142,7 +142,7 @@
 
         <div class="food-group" id="AmericanFoods" style="display: none">
             <a class="waves-effect waves-light btn" v-on:click="search('Burgers')">Burgers</a>
-            <a class="waves-effect waves-light btn" v-on:click="search('Pizza')">Pizza</a>            
+            <a class="waves-effect waves-light btn" v-on:click="search('BBQ')">BBQ</a>            
         </div>
 
       </div>
@@ -161,7 +161,7 @@
 
         <div class="food-group" id="ItalianFoods" style="display: none">
             <a class="waves-effect waves-light btn" v-on:click="search('Pasta')">Pasta</a>
-            <a class="waves-effect waves-light btn" v-on:click="search('cafe')">Cafe</a>            
+            <a class="waves-effect waves-light btn" v-on:click="search('Pizza')">Pizza</a>            
         </div>
         
       </div>
@@ -172,10 +172,15 @@
           <div class="card-image">
             <img src="img/asianfood.jpg">
             <span class="card-title">Asian Food</span>
-            <a class="btn-floating halfway-fab waves-effect waves-light black asian"><i
-                class="material-icons">add</i></a>
+            <a class="btn-floating halfway-fab waves-effect waves-light black asian"><i class="material-icons" v-on:click="showFoods('Asian')">add</i></a>
           </div>
         </div>
+        
+        <div class="food-group" id="AsianFoods" style="display: none">
+          <a class="waves-effect waves-light btn" v-on:click="search('Thai')">Thai</a>
+          <a class="waves-effect waves-light btn" v-on:click="search('Teriyaki')">Teriyaki</a>
+
+      </div>
       </div>
       <!-- Card 4 -->
       <div class="col s12 m6 l3 food-card" id="MexicanCard">
@@ -184,9 +189,12 @@
             <img src="img/mexicanfood.png">
             <span class="card-title">Mexican Food</span>
             <a class="btn-floating halfway-fab waves-effect waves-light black mexican"><i
-                class="material-icons">add</i></a>
+                class="material-icons" v-on:click="showFoods('Mexican')">add</i></a>
           </div>
         </div>
+        <div class="food-group" id="MexicanFoods" style="display: none">
+          <a class="waves-effect waves-light btn" v-on:click="search('Tacos')">Tacos</a>
+          <a class="waves-effect waves-light btn" v-on:click="search('Spanish')">Spanish</a>  
       </div>
     </div>
   </section>
