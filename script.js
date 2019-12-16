@@ -3,33 +3,29 @@
 var zomatoApiKey = "a8b1c7f2b94bb788e758da420a09e59b"
 var latVar;
 var lonVar;
+var x;
 // var coords;
 
 getLocation()
 function getLocation() {
   console.log("Getting Location")
   if (navigator.geolocation) {
-    navigator.geolocation.getCurrentPosition(showPosition)
-    console.log("got that location");
+    navigator.geolocation.getCurrentPosition(showPosition);
   } else { 
     x.text = "Geolocation is not supported by this browser.";
   }
-  showPosition()
-  console.log("we showposition()")
-  AGmap()
-  console.log("finshed running getLocation()")
+  AGmap();
+  showPosition();
 }
 
-// function showPosition(position) {
-//   var x = coords;
+function showPosition(position) {
+  var x = $("#coord");
   
-//   x.text("Latitude: " + position.coords.latitude + 
-//   "<br>Longitude: " + position.coords.longitude);
-//   latVar = position.coords.latitude;
-//  lonVar = position.coords.longitude;
-//   latVar = position.latitude;
-//   lonVar = position.longitude;
-// }
+  x.text("Latitude: " + position.coords.latitude + 
+  "<br>Longitude: " + position.coords.longitude);
+  latVar = position.coords.latitude;
+  lonVar = position.coords.longitude;
+}
 
 
 
