@@ -73,7 +73,23 @@ new Vue({
   el: '#example-3',
   methods: {
     say: function (message) {
-      alert("yooo")
+      // alert("yooo")
     }
   }
 })
+
+var button = document.getElementById("toggle");
+var target = document.getElementById("target");
+var bool = true;
+
+function displayToggle() {
+  if (bool) {
+      target.setAttribute("class", "hide")
+      bool = false;
+  } else {
+    target.setAttribute("class", "show")
+    bool = true;
+  }
+}
+
+button.addEventListener("click", displayToggle, false);
