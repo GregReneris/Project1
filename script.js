@@ -101,9 +101,9 @@ function zomatoSearch(query){
 
 function updateMap(restaurants){
 
-  if (vectorLayer != undefined){
-    map.removeLayer(vectorLayer);
-  }
+  // if (vectorLayer != undefined){
+  //   map.removeLayer(vectorLayer);
+  // }
   mapPoints = []
   mapFeatures = []
   restaurants.forEach (r=> {
@@ -118,19 +118,35 @@ function updateMap(restaurants){
   });
 
     // this makes a new layer for the open layers map. 
-  vectorLayer = new ol.layer.Vector({
-    source:new ol.source.Vector({
-      features: mapFeatures,        // add these ol.Features to the lary
-    }),
-    style: new ol.style.Style({
-      image: new ol.style.Icon({
-        anchor: [0.5, 0.5],
-        anchorXUnits: "fraction",
-        anchorYUnits: "fraction",
-        src: "https://upload.wikimedia.org/wikipedia/commons/e/ec/RedDot.svg"
-      })
-    })
-  }); 
+    if (restaurants){
+      vectorLayer = new ol.layer.Vector({
+        source:new ol.source.Vector({
+          features: mapFeatures,        // add these ol.Features to the lary
+        }),
+        style: new ol.style.Style({
+          image: new ol.style.Icon({
+            anchor: [0.5, 0.5],
+            anchorXUnits: "fraction",
+            anchorYUnits: "fraction",
+            src: "https://upload.wikimedia.org/wikipedia/commons/e/ec/RedDot.svg"
+          })
+        })
+      }); 
+    } else {
+      vectorLayer = new ol.layer.Vector({
+        source:new ol.source.Vector({
+          features: mapFeatures,        // add these ol.Features to the lary
+        }),
+        style: new ol.style.Style({
+          image: new ol.style.Icon({
+            anchor: [0.5, 0.5],
+            anchorXUnits: "fraction",
+            anchorYUnits: "fraction",
+            src: "https://commons.wikimedia.org/wiki/Dots#/media/File:Button_Icon_BlueSky.svg"
+          })
+        })
+      });
+    }
   map.addLayer(vectorLayer);
   // this is a copied function that does map zoom to pushpins.
   map.getView().fit(
@@ -142,10 +158,66 @@ function updateMap(restaurants){
     })
 };
 
-function goHere(element){
-  index = Number( $(element).attr("id"))
-  restaurant = vueResults.restaurants[index];
-  console.log(restaurant);
+var indexTwo;
+var nightlife;
+function goHere(query){
+  indexTwo = Number( $(query).attr("id"))
+  nightlife = vueResults.nightlife[index];
+  console.log(nightlife);
+  
+  function zomatoSearch(query){
+    console.log("made it to the code");
+  
+    // query = "";
+    // $(".foodSelection").each(function(){
+    //   if($(this).is(":checked")) {
+    //     query = query + $(this).val()+" ";
+    //   }
+    // })
+    //query= query.trim();
+    // console.log(query);
+  
+  
+    url = "https://developers.zomato.com/api/v2.1/search"+
+            "?entity_type=city"+
+            "&q="+encodeURIComponent(query.trim())+
+            "&count=5"+
+            "&lat="+latVar+
+            "&lon="+lonVar+
+            "&apikey="+zomatoApiKey;
+      console.log(url);
+     $.ajax({
+      "url": url 
+     }).then(function(response) {
+        nightlife = []
+        response.nightlife.forEach(element => {
+          nightlife.push(element.restaurant);    
+        });
+  
+        nightlife.sort(function (b, a){
+          diff = ( Number(a.user_rating.aggregate_rating) - Number(b.user_rating.aggregate_rating) );
+          return diff;
+        });
+      //this creates an array for the restaurant output, and by using vue to 
+      //put it in an array let's the HTML function like a template.
+        vueResults.nightlife.splice(0);
+        nightlife.forEach( function(nightlife){
+          restaurant.index = vueResults.nightlife.length;
+          vueResults.nightlife.push(restaurant);
+        });
+  
+        
+      //createCards(nightlife);
+  
+      updateMap(nightlife);
+        
+       console.log("*");
+       console.log(response);
+       
+     });
+    
+    
+  }
 }
 
 // line up the html appends with the class of the materialize cards underneath the food buttons but above the map.  
