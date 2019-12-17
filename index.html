@@ -202,7 +202,19 @@
       </div>
     </div>
   </section>
-  <div id="results"></div>
+
+  <section id="resultCards">
+    <div v-for="r in restaurants">
+      <!-- Add the proper HTML styling here -->
+      <img :src="r.thumb"></img><br />
+      <a :href="r.url">{{r.name}}</a><br />
+      Rating: {{r.user_rating.aggregate_rating}}, Phone #: {{r.phone_numbers}}<br />
+      Highlights: {{r.highlights.join(", ")}}<br />
+      {{r.location.address}}  {{r.location.city}}<br />
+      <a class="waves-effect waves-light btn" :id="r.index" onclick="goHere(this)">Go Here</a>
+      <br />
+    </div>
+  </section>
 
   <!-- TODO: MOVE THIS (POPULATES THE MAP) -->
   <section class="map">
