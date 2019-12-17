@@ -3,7 +3,7 @@
 var zomatoApiKey = "a8b1c7f2b94bb788e758da420a09e59b"
 var latVar;
 var lonVar;
-
+var vectorLayer;
 var vueResults = new Vue({
   el: "#resultCards",
   data: {
@@ -78,6 +78,7 @@ function zomatoSearch(query){
       });
     //this creates an array for the restaurant output, and by using vue to 
     //put it in an array let's the HTML function like a template.
+      vueResults.restaurants.splice(0);
       restaurants.forEach( function(restaurant){
         restaurant.index = vueResults.restaurants.length;
         vueResults.restaurants.push(restaurant);
@@ -98,6 +99,12 @@ function zomatoSearch(query){
 
 
 function updateMap(restaurants){
+
+  if (vectorLayer != undefined){
+    map.removeLayer(vectorLayer);
+  }
+
+  mapFeatures = []
   restaurants.forEach (r=> {
       gpsCoords =[Number(r.location.longitude), Number(r.location.latitude)];
       mapCoords = ol.proj.fromLonLat(gpsCoords); //converts from GPS coordinates to Open Layer Map coordinates.
@@ -105,10 +112,24 @@ function updateMap(restaurants){
         geometry: new ol.geom.Point(mapCoords),
         restaurant: r
       })
+      mapFeatures.push(feature);
+  });
 
-  })
-
-
+    // this makes a new layer for the open layers map. 
+  vectorLayer = new ol.layer.Vector({
+    source:new ol.source.Vector({
+      features: mapFeatures,        // add these ol.Features to the lary
+    }),
+    style: new ol.style.Style({
+      image: new ol.style.Icon({
+        anchor: [0.5, 0.5],
+        anchorXUnits: "fraction",
+        anchorYUnits: "fraction",
+        src: "https://upload.wikimedia.org/wikipedia/commons/e/ec/RedDot.svg"
+      })
+    })
+  }); 
+  map.addLayer(vectorLayer);
 
 };
 
@@ -118,7 +139,7 @@ function goHere(element){
   console.log(restaurant);
 }
 
-// TODO: line up the html appends with the class of the materialize cards underneath the food buttons but above the map.  
+// line up the html appends with the class of the materialize cards underneath the food buttons but above the map.  
 // function createCards(restaurants){
 //   cards = $("#results");
 //   cards.empty();
@@ -151,7 +172,7 @@ function goHere(element){
 
 function AGmap(){
 console.log([ lonVar, latVar])
-  var map = new ol.Map({
+  map = new ol.Map({  // this is not a global
     target: 'map',
     layers: [
       new ol.layer.Tile({
