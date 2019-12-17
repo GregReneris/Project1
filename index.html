@@ -145,8 +145,8 @@
         </div>
 
         <div class="food-group" id="AmericanFoods" style="display: none">
-            <a class="waves-effect waves-light btn foodSelection" value="Burgers" onclick="zomatoSearch(this)">Burgers</a>
-            <a class="waves-effect waves-light btn foodSelection" value="BBQ" onclick="zomatoSearch(this)">BBQ</a>            
+            <a class="waves-effect waves-light btn foodSelection"  onclick="zomatoSearch('burger')">Burgers</a>
+            <a class="waves-effect waves-light btn foodSelection"  onclick="zomatoSearch('BBQ')">BBQ</a>            
         </div>
 
       </div>
@@ -164,8 +164,8 @@
         </div>
 
         <div class="food-group" id="ItalianFoods" style="display: none">
-            <a class="waves-effect waves-light btn" value="Pasta" onclick="zomatoSearch(this)">Pasta</a>
-            <a class="waves-effect waves-light btn" value="pizza" onclick="zomatoSearch(this)">Pizza</a>            
+            <a class="waves-effect waves-light btn"  onclick="zomatoSearch('pasta')">Pasta</a>
+            <a class="waves-effect waves-light btn"  onclick="zomatoSearch('pizza')">Pizza</a>            
         </div>
         
       </div>
@@ -181,8 +181,8 @@
         </div>
         
         <div class="food-group" id="AsianFoods" style="display: none">
-          <a class="waves-effect waves-light btn" value="Thai" onclick="zomatoSearch(this)">Thai</a>
-          <a class="waves-effect waves-light btn" value="Teriyaki" onclick="zomatoSearch(this)">Teriyaki</a>
+          <a class="waves-effect waves-light btn"  onclick="zomatoSearch('thai')">Thai</a>
+          <a class="waves-effect waves-light btn"  onclick="zomatoSearch('teriyaki')">Teriyaki</a>
 
       </div>
       </div>
@@ -197,11 +197,12 @@
           </div>
         </div>
         <div class="food-group" id="MexicanFoods" style="display: none">
-          <a class="waves-effect waves-light btn" value="Tacos" onclick="zomatoSearch(this)">Tacos</a>
-          <a class="waves-effect waves-light btn" value="Spanish" onclick="zomatoSearch(this)">Spanish</a>  
+          <a class="waves-effect waves-light btn"  onclick="zomatoSearch('tacos')">Tacos</a>
+          <a class="waves-effect waves-light btn"  onclick="zomatoSearch('tex-mex')">Tex-Mex</a>  
       </div>
     </div>
   </section>
+  <div id="results"></div>
 
   <!-- TODO: MOVE THIS (POPULATES THE MAP) -->
   <section class="map">

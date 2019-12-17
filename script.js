@@ -15,7 +15,7 @@ function getLocation() {
     x.text = "Geolocation is not supported by this browser.";
   }
   AGmap();
-  showPosition();
+  
 }
 
 function showPosition(position) {
@@ -38,28 +38,29 @@ function documentZomato (){
   // AGmap(lonVar,latVar)
 }
 
-function zomatoSearch(){
+function zomatoSearch(query){
   console.log("made it to the code");
 
-  query = "";
-  $(".foodSelection").each(function(){
-    //if($(this).is(":checked")) {
-      query = query + $(this).val()+" ";
-    //}
-  })
-  query= query.trim();
-  console.log(query);
+  // query = "";
+  // $(".foodSelection").each(function(){
+  //   if($(this).is(":checked")) {
+  //     query = query + $(this).val()+" ";
+  //   }
+  // })
+  //query= query.trim();
+  // console.log(query);
 
 
-
+  url = "https://developers.zomato.com/api/v2.1/search"+
+          "?entity_type=city"+
+          "&q="+encodeURIComponent(query.trim())+
+          "&count=5"+
+          "&lat="+latVar+
+          "&lon="+lonVar+
+          "&apikey="+zomatoApiKey;
+    console.log(url);
    $.ajax({
-     "url": "https://developers.zomato.com/api/v2.1/search"+
-              "?entity_type=city"+
-              "&q="+encodeURIComponent(query)+
-              "&count=5"+
-              "&lat="+latVar+
-              "&lon="+lonVar+
-              "&apikey="+zomatoApiKey 
+    "url": url 
    }).then(function(response) {
       restaurants = []
       response.restaurants.forEach(element => {
@@ -79,18 +80,18 @@ function zomatoSearch(){
   
   
 }
-// function updateMap(restaurants){
-//   restaurants.forEach (r=> {
-//       gpsCoords =[Number(r.location.longitude), Number(r.location.latitude)];
-//       //mapCoords = ol.proj.fromLonLat(gpsCoords);
+function updateMap(restaurants){
+  restaurants.forEach (r=> {
+      gpsCoords =[Number(r.location.longitude), Number(r.location.latitude)];
+      //mapCoords = ol.proj.fromLonLat(gpsCoords);
 
-//   })
+  })
 
-// };
+};
 
 // TODO: line up the html appends with the class of the materialize cards underneath the food buttons but above the map.  
 function createCards(restaurants){
-  cards = $("#cards");
+  cards = $("#results");
   cards.empty();
 
   restaurants.forEach(r => {
@@ -170,14 +171,14 @@ new Vue({
   }
 })
 
-new Vue({
-  el: '#example-4',
-  methods: {
-    say: function (message) {
-      alert("yooo2")
-    }
-  }
-})
+// new Vue({
+//   el: '#example-4',
+//   methods: {
+//     say: function (message) {
+//       alert("yooo2")
+//     }
+//   }
+// })
 
 // function displayToggle() {
 //   if (bool) {
