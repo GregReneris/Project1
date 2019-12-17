@@ -4,6 +4,7 @@ var zomatoApiKey = "a8b1c7f2b94bb788e758da420a09e59b"
 var latVar;
 var lonVar;
 var vectorLayer;
+var map;
 var vueResults = new Vue({
   el: "#resultCards",
   data: {
@@ -103,7 +104,7 @@ function updateMap(restaurants){
   if (vectorLayer != undefined){
     map.removeLayer(vectorLayer);
   }
-
+  mapPoints = []
   mapFeatures = []
   restaurants.forEach (r=> {
       gpsCoords =[Number(r.location.longitude), Number(r.location.latitude)];
@@ -113,6 +114,7 @@ function updateMap(restaurants){
         restaurant: r
       })
       mapFeatures.push(feature);
+      mapPoints.push(mapCoords);
   });
 
     // this makes a new layer for the open layers map. 
@@ -130,7 +132,14 @@ function updateMap(restaurants){
     })
   }); 
   map.addLayer(vectorLayer);
-
+  // this is a copied function that does map zoom to pushpins.
+  map.getView().fit(
+    new ol.geom.Polygon([mapPoints]),
+    {
+      duration: 2500,
+      maxZoom: 15,
+      padding: [20,20,20,20]
+    })
 };
 
 function goHere(element){
