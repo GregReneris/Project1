@@ -94,12 +94,21 @@ function zomatoSearch(query){
   
   
 }
+
+
+
 function updateMap(restaurants){
   restaurants.forEach (r=> {
       gpsCoords =[Number(r.location.longitude), Number(r.location.latitude)];
-      //mapCoords = ol.proj.fromLonLat(gpsCoords);
+      mapCoords = ol.proj.fromLonLat(gpsCoords); //converts from GPS coordinates to Open Layer Map coordinates.
+      feature = new ol.Feature({
+        geometry: new ol.geom.Point(mapCoords),
+        restaurant: r
+      })
 
   })
+
+
 
 };
 
