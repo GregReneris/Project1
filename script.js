@@ -47,16 +47,6 @@ function documentZomato (){
 function zomatoSearch(query){
   console.log("made it to the code");
 
-  // query = "";
-  // $(".foodSelection").each(function(){
-  //   if($(this).is(":checked")) {
-  //     query = query + $(this).val()+" ";
-  //   }
-  // })
-  //query= query.trim();
-  // console.log(query);
-
-
   url = "https://developers.zomato.com/api/v2.1/search"+
           "?entity_type=city"+
           "&q="+encodeURIComponent(query.trim())+
@@ -132,20 +122,21 @@ function updateMap(restaurants){
           })
         })
       }); 
-    } else {
-      vectorLayer = new ol.layer.Vector({
-        source:new ol.source.Vector({
-          features: mapFeatures,        // add these ol.Features to the lary
-        }),
-        style: new ol.style.Style({
-          image: new ol.style.Icon({
-            anchor: [0.5, 0.5],
-            anchorXUnits: "fraction",
-            anchorYUnits: "fraction",
-            src: "https://commons.wikimedia.org/wiki/Dots#/media/File:Button_Icon_BlueSky.svg"
-          })
-        })
-      });
+      // this was going to be an if statement that colored nightlife blue. Couldn't get it to work in time.
+    // } if (restaurants.index.restaurant.highlighs.indexOf('Nightlife')) {
+    //   vectorLayer = new ol.layer.Vector({
+    //     source:new ol.source.Vector({
+    //       features: mapFeatures,        // add these ol.Features to the lary
+    //     }),
+    //     style: new ol.style.Style({
+    //       image: new ol.style.Icon({
+    //         anchor: [0.5, 0.5],
+    //         anchorXUnits: "fraction",
+    //         anchorYUnits: "fraction",
+    //         src: "https://commons.wikimedia.org/wiki/Dots#/media/File:Button_Icon_BlueSky.svg"
+    //       })
+    //     })
+    //   });
     }
   map.addLayer(vectorLayer);
   // this is a copied function that does map zoom to pushpins.
@@ -158,25 +149,20 @@ function updateMap(restaurants){
     })
 };
 
+
+
 var indexTwo;
 var nightlife;
+
+
 function goHere(query){
   indexTwo = Number( $(query).attr("id"))
   nightlife = vueResults.nightlife[index];
   console.log(nightlife);
   
   function zomatoSearch(query){
-    console.log("made it to the code");
-  
-    // query = "";
-    // $(".foodSelection").each(function(){
-    //   if($(this).is(":checked")) {
-    //     query = query + $(this).val()+" ";
-    //   }
-    // })
-    //query= query.trim();
-    // console.log(query);
-  
+    console.log("made it to the code go here");
+
   
     url = "https://developers.zomato.com/api/v2.1/search"+
             "?entity_type=city"+
