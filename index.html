@@ -226,7 +226,8 @@
                 {{r.location.address}} {{r.location.city}}<br /></p>
             </div>
             <div class="card-action">
-              <a class="waves-effect waves-light btn" :id="r.index" onclick="goHere(this)">Go Here</a>
+              <a class="waves-effect waves-light btn" onclick="zomatoSearch('Nightlife')">nightlife</a>
+              <!-- <a class="waves-effect waves-light btn" :id="r.index" onclick="goHere(this)">Go Here</a> -->
             </div>
           </div>
         </div>
@@ -248,7 +249,7 @@
     </div>
   </section> -->
 
-  <!-- TODO: MOVE THIS (POPULATES THE MAP) -->
+  <!-- (POPULATES THE MAP) -->
   <section class="map">
     <div id="map" class="map"></div>
     <div id="map_overlay" class="map_overlay"></div>
