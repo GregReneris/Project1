@@ -181,7 +181,7 @@ console.log([ lonVar, latVar])
     ],
     view: new ol.View({
       center: ol.proj.fromLonLat([ lonVar, latVar]),
-      zoom: 10
+      zoom: 12
     })
   });
 }
