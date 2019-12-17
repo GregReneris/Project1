@@ -116,3 +116,6 @@ nav .logo{
 #resultCards {
   padding-right: 20%;
 }
+#sidenav-overlay {
+   z-index: 10000;
+   }
