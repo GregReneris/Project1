@@ -27,6 +27,19 @@ nav .logo{
   /* padding-left: 20%; */
 }
 
+.rowIcons{ 
+  align-content: center;
+}
+
+.light{ 
+  align-content: center;
+  text-align: center;
+}
+.our-pictures2{ 
+  display:flex;
+  justify-content: center;
+}
+
 .slider .btn{
   margin-top:20px;
   padding:0 50px;
@@ -97,7 +110,7 @@ nav .logo{
 
 #index-gallery{
   /* width:465px; */
-  padding-left: 39%;
+  /* padding-left: 39%; */
 }
 
 #resultCards {
