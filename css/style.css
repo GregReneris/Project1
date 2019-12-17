@@ -99,3 +99,7 @@ nav .logo{
   /* width:465px; */
   padding-left: 33%;
 }
+
+#resultCards {
+  padding-right: 20%;
+}

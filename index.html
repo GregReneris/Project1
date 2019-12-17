@@ -203,9 +203,34 @@
     </div>
   </section>
 
-  <section id="resultCards">
+
+  <!-- displays the results from the search as cards -->
+  <div class="col s12 m7">
+    <section id="resultCards">
+      <div v-for="r in restaurants">
+        <div class="card horizontal">
+          <div class="card-image">
+            <img :src="r.thumb"></img>
+          </div>
+          <div class="card-stacked">
+            <div class="card-content">
+              <p><a :href="r.url">{{r.name}}</a><br />
+                Rating: {{r.user_rating.aggregate_rating}}, Phone #: {{r.phone_numbers}}<br />
+                Highlights: {{r.highlights.join(", ")}}<br />
+                {{r.location.address}} {{r.location.city}}<br /></p>
+            </div>
+            <div class="card-action">
+              <a class="waves-effect waves-light btn" :id="r.index" onclick="goHere(this)">Go Here</a>
+            </div>
+          </div>
+        </div>
+      </div>
+  </div>
+  </section>
+
+  <!-- <section id="resultCards">
     <div v-for="r in restaurants">
-      <!-- Add the proper HTML styling here -->
+      Add the proper HTML styling here
       <img :src="r.thumb"></img><br />
       <a :href="r.url">{{r.name}}</a><br />
       Rating: {{r.user_rating.aggregate_rating}}, Phone #: {{r.phone_numbers}}<br />
@@ -214,7 +239,7 @@
       <a class="waves-effect waves-light btn" :id="r.index" onclick="goHere(this)">Go Here</a>
       <br />
     </div>
-  </section>
+  </section> -->
 
   <!-- TODO: MOVE THIS (POPULATES THE MAP) -->
   <section class="map">
