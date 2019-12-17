@@ -12,30 +12,33 @@
   <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
   <link href="css/style.css" type="text/css" rel="stylesheet" media="screen,projection" />
 
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.11.2/css/all.css" integrity="sha256-46qynGAkLSFpVbEBog43gvNhfrOj+BmwXdxFgVK/Kvc=" crossorigin="anonymous" />
-  <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/openlayers/openlayers.github.io@master/en/v6.1.1/css/ol.css" type="text/css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.11.2/css/all.css"
+    integrity="sha256-46qynGAkLSFpVbEBog43gvNhfrOj+BmwXdxFgVK/Kvc=" crossorigin="anonymous" />
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/openlayers/openlayers.github.io@master/en/v6.1.1/css/ol.css"
+    type="text/css">
+  <script src="vue.js"></script>
 
 </head>
 
 <body>
   <!-- Navbar -->
-  <div class="navbar-fixed">
+  <!-- <div class="navbar-fixed"> -->
 
 
     <nav class="black lighten-1" role="navigation">
       <div class="nav-wrapper"><a id="logo-container" href="#" class="brand-logo logo"> <i
             class="material-icons">location_on</i>Vivere</a>
+        <a href="#about-us" data-target="nav-mobile" class="sidenav-trigger"><i class="material-icons">menu</i></a>
         <ul class="right hide-on-med-and-down">
-          <li><a href="#about">About Us</a></li>
+          <li><a href="#about-us">About Us</a></li>
         </ul>
 
-        <ul id="nav-mobile" class="sidenav">
-          <li><a href="#about">About Us</a></li>
-        </ul>
-        <a href="#" data-target="nav-mobile" class="sidenav-trigger"><i class="material-icons">menu</i></a>
       </div>
     </nav>
-  </div>
+    <ul class="sidenav" id="nav-mobile" >
+      <li><a href="#about-us">About Us</a></li>
+    </ul>
+  <!-- </div> -->
   <!-- Section: Slider -->
   <section class="slider">
     <ul class="slides">
@@ -82,29 +85,31 @@
 
   <!--   Icon Section   -->
   <div class="container page-one" id="options">
+    <br>
+    <br>
     <div class="section">
-      <div class="row">
-        <div class="col s12 m4">
+      <div class="rowIcons">
+        <div class="col s12 m4 ">
           <div class="icon-block">
             <h2 class="center black-text"><i class="material-icons">local_bar</i></h2>
-            <h5 class="center"><a href="#" class="black-text">Nightlife</a></h5>
+            <h5 class="center"><a class="black-text" href="#start">Nightlife</a></h5>
 
             <p class="light">Lining up plans for tonight? Whether you're a local, new in town, or just passing through,
-              Vivere’s got you covered. </p>
+              Vivere’s got you covered.Check out our most </p>
           </div>
         </div>
 
-        <div class="col s12 m4">
+        <div class="col s12 m4 ">
           <div class="icon-block">
             <h2 class="center black-text"><i class="material-icons">local_dining</i></h2>
-            <h5 class="center"><a href="#" class="black-text">Food&Drink</a></h5>
+            <h5 class="center"><a class="black-text" href="#start">Food&Drink</a></h5>
 
             <p class="light">With a place for every taste, it's easy to find food you crave with Vivere. Explore options
               for cuisine all around the city.</p>
           </div>
         </div>
 
-        <div class="col s12 m4">
+        <!-- <div class="col s12 m4">
           <div class="icon-block">
             <h2 class="center black-text"><i class="material-icons">event</i></h2>
             <h5 class="center"><a href="#" class="black-text">Events</a></h5>
@@ -112,7 +117,7 @@
             <p class="light">The best guide to local events. From music to art to theater to sporting events, find
               comprehensive listings and expert picks here.</p>
           </div>
-        </div>
+        </div> -->
       </div>
 
     </div>
@@ -127,7 +132,8 @@
 
   <!-- Section:Food Cards -->
   <section id="start" class="section section-card page-two">
-    <h6 class="center">Check this out</h6>
+    <br>
+    <br>
     <h3 class="center">Food Options</h3>
     <div class="row">
 
@@ -137,15 +143,15 @@
           <div class="card-image" id="example-3old">
             <img src="img/american food.jpg">
             <span class="card-title">American Food</span>
-            
+
             <a class="btn-floating halfway-fab waves-effect waves-light black american">
               <i class="material-icons" v-on:click="showFoods('American')">add</i></a>
           </div>
         </div>
 
         <div class="food-group" id="AmericanFoods" style="display: none">
-            <a class="waves-effect waves-light btn" v-on:click="search('Burgers')">Burgers</a>
-            <a class="waves-effect waves-light btn" v-on:click="search('BBQ')">BBQ</a>            
+          <a class="waves-effect waves-light btn foodSelection" onclick="zomatoSearch('burger')">Burgers</a>
+          <a class="waves-effect waves-light btn foodSelection" onclick="zomatoSearch('BBQ')">BBQ</a>
         </div>
 
       </div>
@@ -158,15 +164,15 @@
             <img src="img/Italian-food.jpeg">
             <span class="card-title">Italian Food</span>
             <a class="btn-floating halfway-fab waves-effect waves-light black italian">
-              <i class="material-icons" v-on:click="showFoods('Italian')">add</i></a>              
+              <i class="material-icons" v-on:click="showFoods('Italian')">add</i></a>
           </div>
         </div>
 
         <div class="food-group" id="ItalianFoods" style="display: none">
-            <a class="waves-effect waves-light btn" v-on:click="search('Pasta')">Pasta</a>
-            <a class="waves-effect waves-light btn" v-on:click="search('Pizza')">Pizza</a>            
+          <a class="waves-effect waves-light btn" onclick="zomatoSearch('pasta')">Pasta</a>
+          <a class="waves-effect waves-light btn" onclick="zomatoSearch('pizza')">Pizza</a>
         </div>
-        
+
       </div>
 
       <!-- Card 3 -->
@@ -175,15 +181,16 @@
           <div class="card-image">
             <img src="img/asianfood.jpg">
             <span class="card-title">Asian Food</span>
-            <a class="btn-floating halfway-fab waves-effect waves-light black asian"><i class="material-icons" v-on:click="showFoods('Asian')">add</i></a>
+            <a class="btn-floating halfway-fab waves-effect waves-light black asian"><i class="material-icons"
+                v-on:click="showFoods('Asian')">add</i></a>
           </div>
         </div>
-        
-        <div class="food-group" id="AsianFoods" style="display: none">
-          <a class="waves-effect waves-light btn" v-on:click="search('Thai')">Thai</a>
-          <a class="waves-effect waves-light btn" v-on:click="search('Teriyaki')">Teriyaki</a>
 
-      </div>
+        <div class="food-group" id="AsianFoods" style="display: none">
+          <a class="waves-effect waves-light btn" onclick="zomatoSearch('thai')">Thai</a>
+          <a class="waves-effect waves-light btn" onclick="zomatoSearch('teriyaki')">Teriyaki</a>
+
+        </div>
       </div>
       <!-- Card 4 -->
       <div class="col s12 m6 l3 food-card" id="MexicanCard">
@@ -191,16 +198,55 @@
           <div class="card-image">
             <img src="img/mexicanfood.png">
             <span class="card-title">Mexican Food</span>
-            <a class="btn-floating halfway-fab waves-effect waves-light black mexican"><i
-                class="material-icons" v-on:click="showFoods('Mexican')">add</i></a>
+            <a class="btn-floating halfway-fab waves-effect waves-light black mexican"><i class="material-icons"
+                v-on:click="showFoods('Mexican')">add</i></a>
           </div>
         </div>
         <div class="food-group" id="MexicanFoods" style="display: none">
-          <a class="waves-effect waves-light btn" v-on:click="search('Tacos')">Tacos</a>
-          <a class="waves-effect waves-light btn" v-on:click="search('Spanish')">Spanish</a>  
+          <a class="waves-effect waves-light btn" onclick="zomatoSearch('tacos')">Tacos</a>
+          <a class="waves-effect waves-light btn" onclick="zomatoSearch('tex-mex')">Tex-Mex</a>
+        </div>
       </div>
-    </div>
   </section>
+
+
+  <!-- displays the results from the search as cards -->
+  <div class="col s12 m7">
+    <section id="resultCards">
+      <div v-for="r in restaurants">
+        <div class="card horizontal">
+          <div class="card-image">
+            <img :src="r.thumb"></img>
+          </div>
+          <div class="card-stacked">
+            <div class="card-content">
+              <p><a :href="r.url">{{r.name}}</a><br />
+                Rating: {{r.user_rating.aggregate_rating}}, Phone #: {{r.phone_numbers}}<br />
+                Highlights: {{r.highlights.join(", ")}}<br />
+                {{r.location.address}} {{r.location.city}}<br /></p>
+            </div>
+            <div class="card-action">
+              <a class="waves-effect waves-light btn" :id="r.index" onclick="goHere(this)">Go Here</a>
+            </div>
+          </div>
+        </div>
+      </div>
+  </div>
+  </section>
+
+  <!-- old vanilla looking results -->
+  <!-- <section id="resultCards">
+    <div v-for="r in restaurants">
+      Add the proper HTML styling here
+      <img :src="r.thumb"></img><br />
+      <a :href="r.url">{{r.name}}</a><br />
+      Rating: {{r.user_rating.aggregate_rating}}, Phone #: {{r.phone_numbers}}<br />
+      Highlights: {{r.highlights.join(", ")}}<br />
+      {{r.location.address}}  {{r.location.city}}<br />
+      <a class="waves-effect waves-light btn" :id="r.index" onclick="goHere(this)">Go Here</a>
+      <br />
+    </div>
+  </section> -->
 
   <!-- TODO: MOVE THIS (POPULATES THE MAP) -->
   <section class="map">
@@ -210,9 +256,12 @@
   <br>
   <br>
   <br>
+  <br>
+  <br>
+  <br>
 
   <!-- Section:Nightlife -->
-  <section id="nightlife" class="section section-card page-three">
+  <!-- <section id="nightlife" class="section section-card page-three">
     <h6 class="center">Let's have fun!</h6>
     <h3 class="center">Nightlife Options</h3>
     <div class="night-row row">
@@ -238,11 +287,13 @@
       </div>
       <div class="col l1"></div>
     </div>
-  </section>
+  </section> -->
   <!-- end of nightlife -->
 
+
+  <!-- zomato doesnt have events in the filter, left these here just in case we want to go wild with this one day -->
   <!-- Section:events -->
-  <section id="nightlife" class="section section-card page-four">
+  <!-- <section id="nightlife" class="section section-card page-four">
     <h6 class="center">Dont miss out</h6>
     <h3 class="center">Events</h3>
     <div class="night-row row">
@@ -280,11 +331,11 @@
         </div>
       </div>
     </div>
-  </section>
+  </section> -->
 
 
   <!-- Section: Follow social media -->
-  <section class="section section-follow black darken-2 white-text">
+  <section id="about-us" class="section section-follow black darken-2 white-text">
     <div class="container">
       <div class="row">
         <div class="col s12 center">
@@ -311,49 +362,43 @@
     </div>
   </section>
 
-  <!-- all of our pictures -->
-  <section class="section section-follow black darken-2 white-text">
-    <div class="center" id="index-gallery">
-      <!-- picture of aslan -->
-      <div class="item center">
-        <img class="pic" src="https://ca.slack-edge.com/TQ1KWR5HU-UQ9JTKZDX-76b5d10105a7-512">
-        <a href="https://github.com/Aslangh67" class="pic-name">Aslan</a>
-      </div>
-
-      <!-- picture of greg -->
-      <div class="item center">
-        <img class="pic" src="https://ca.slack-edge.com/TQ1KWR5HU-UQ9JQAPNV-65e2bbe171a9-512">
-        <a href="https://github.com/GregReneris" class="pic-name">Greg</a>
-      </div>
-
-      <!-- picture of jaque -->
-      <div class="item center">
-        <img class="pic" src="img/jaque.jpg.jpg">
-        <a href="https://github.com/Jupton2020" class="pic-name">Jaque</a>
-      </div>
-
-      <!-- picture of nate -->
-      <div class="item center">
-        <img class="pic" src="https://ca.slack-edge.com/TQ1KWR5HU-UQKNHH7QE-5caa6237aac7-512">
-        <a href="https://github.com/jittel" class="pic-name">Nate</a>
-      </div>
-    </div>
-  </section>
-
-
-
-
   <!-- Section: Footer -->
   <footer class="page-footer black">
     <div class="container">
       <div class="row">
         <div class="col l12 s12">
           <h5 class="white-text center">About US</h5>
-          <p class="grey-text text-lighten-4 center">We are a team of college students working on this project like
-            it's our full time job. Any amount would help support and continue development on this project and is
-            greatly
-            appreciated.
+          <p class="grey-text text-lighten-4 center">We are a team of students working on this project like
+            it's our full time job. Any feedback would help support and continue development on this project and is
+            greatly appreciated.
           </p>
+          <div class="our-pictures2 center">
+            <div class="center" id="index-gallery">
+              <!-- picture of aslan -->
+              <div class="item center">
+                <img class="pic" src="https://ca.slack-edge.com/TQ1KWR5HU-UQ9JTKZDX-76b5d10105a7-512">
+                <a href="https://github.com/Aslangh67" class="pic-name">Aslan</a>
+              </div>
+
+              <!-- picture of greg -->
+              <div class="item center">
+                <img class="pic" src="https://ca.slack-edge.com/TQ1KWR5HU-UQ9JQAPNV-65e2bbe171a9-512">
+                <a href="https://github.com/GregReneris" class="pic-name">Greg</a>
+              </div>
+
+              <!-- picture of jaque -->
+              <div class="item center">
+                <img class="pic" src="img/jaque.jpg.jpg">
+                <a href="https://github.com/Jupton2020" class="pic-name">Jaque</a>
+              </div>
+            </div>
+
+            <!-- picture of nate -->
+            <div class="item center">
+              <img class="pic" src="https://ca.slack-edge.com/TQ1KWR5HU-UQKNHH7QE-5caa6237aac7-512">
+              <a href="https://github.com/jittel" class="pic-name">Nate</a>
+            </div>
+          </div>
         </div>
       </div>
     </div>
@@ -365,14 +410,68 @@
   </footer>
 
 
+
+  <!-- all of our pictures -->
+  <!-- <section class="section section-follow black darken-2 white-text">
+    <div class="center" id="index-gallery"> -->
+  <!-- picture of aslan -->
+  <!-- <div class="item center">
+        <img class="pic" src="https://ca.slack-edge.com/TQ1KWR5HU-UQ9JTKZDX-76b5d10105a7-512">
+        <a href="https://github.com/Aslangh67" class="pic-name">Aslan</a>
+      </div> -->
+
+  <!-- picture of greg -->
+  <!-- <div class="item center">
+        <img class="pic" src="https://ca.slack-edge.com/TQ1KWR5HU-UQ9JQAPNV-65e2bbe171a9-512">
+        <a href="https://github.com/GregReneris" class="pic-name">Greg</a>
+      </div> -->
+
+  <!-- picture of jaque -->
+  <!-- <div class="item center">
+        <img class="pic" src="img/jaque.jpg.jpg">
+        <a href="https://github.com/Jupton2020" class="pic-name">Jaque</a>
+      </div> -->
+
+  <!-- picture of nate -->
+  <!-- <div class="item center">
+        <img class="pic" src="https://ca.slack-edge.com/TQ1KWR5HU-UQKNHH7QE-5caa6237aac7-512">
+        <a href="https://github.com/jittel" class="pic-name">Nate</a>
+      </div>
+    </div>
+  </section> -->
+
+
+
+
+  <!-- Section: Footer -->
+  <!-- <footer class="page-footer black">
+    <div class="container">
+      <div class="row">
+        <div class="col l12 s12">
+          <h5 class="white-text center">About US</h5>
+          <p class="grey-text text-lighten-4 center">We are a team of students working on this project like
+            it's our full time job. Any feedback would help support and continue development on this project and is
+            greatly appreciated.
+          </p>
+        </div>
+      </div>
+    </div>
+    <div class="footer-copyright">
+      <div class="container center">
+        Copyright® 2019
+      </div>
+    </div>
+  </footer> -->
+
+
   <!--  Scripts-->
   <script src="https://cdn.jsdelivr.net/gh/openlayers/openlayers.github.io@master/en/v6.1.1/build/ol.js"></script>
-    <script src="./js/script.js"></script>
+  <script src="script.js"></script>
   <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
   <script src="https://code.jquery.com/jquery-2.1.1.min.js"></script>
   <script src="js/materialize.js"></script>
   <script src="js/init.js"></script>
-  <script src="script.js"></script>
+
 
 </body>
 

@@ -1,67 +1,187 @@
 
+
+var zomatoApiKey = "a8b1c7f2b94bb788e758da420a09e59b"
+var latVar;
+var lonVar;
+var vectorLayer;
+var map;
+var vueResults = new Vue({
+  el: "#resultCards",
+  data: {
+    restaurants: []
+  }
+});
+// var coords;
+
+getLocation()
+function getLocation() {
+  console.log("Getting Location")
+  if (navigator.geolocation) {
+    navigator.geolocation.getCurrentPosition(showPosition);
+  } else { 
+    x.text = "Geolocation is not supported by this browser.";
+  }
+  
+}
+
+function showPosition(position) {
+  var x = $("#coord");
+  x.text("Latitude: " + position.coords.latitude + 
+  "<br>Longitude: " + position.coords.longitude);
+  latVar = position.coords.latitude;
+  lonVar = position.coords.longitude;
+  AGmap();
+}
+
+
+
 function documentZomato (){
   getLocation(showPosition);
-  //I am inserting the variables related to our needed calls below.
-  // var categoryOfFood =    ; 
-  // var locationInput =     ;
-  //Zomato
-  // https://developers.zomato.com/api/v2.1/categories?apikey=a8b1c7f2b94bb788e758da420a09e59b
-
-  var zomatoQueryURL = "https://developers.zomato.com/api/v2.1/categories?"+zomatoApiKey
-  var zomatoApiKey = "apikey=a8b1c7f2b94bb788e758da420a09e59b"
-  var zomatoCuisine = "BBQ" //clickedButton
-  var latVar;
-  var lonVar;
-  // var DineIn = dineInButton
   
-  function getLocation() {
-    if (navigator.geolocation) {
-      navigator.geolocation.getCurrentPosition(showPosition);
-    } else { 
-      x.text = "Geolocation is not supported by this browser.";
-    }
-  }
 
-  function showPosition(position) {
-    var x = $("#coord");
-    x.text("Latitude: " + position.coords.latitude + 
-    "<br>Longitude: " + position.coords.longitude);
-   latVar = position.coords.latitude;
-   lonVar = position.coords.longitude;
-  }
-
-  zomatoSearch();
-  function zomatoSearch(){
-    $.ajax({
-      "url": "https://developers.zomato.com/api/v2.1/categories?&lat="+latVar+"&lon="+lonVar+"&"+zomatoCuisine+"&count=5&"+zomatoApiKey 
-    }).then(function(response) {
-      console.log("*");
-      console.log(response);
-    });
-  }
-  // https://developers.zomato.com/api/v2.1/search?entity_type=city&q=asian&count=4&lat=47.60357&lon=-122.32945 This one has lon and lat as examples. 
-  // this is a search for a cuisine test
-  // $.ajax({
-  //   "url": "https://developers.zomato.com/api/v2.1/cuisines?city_id=279&"+zomatoApiKey
-  // }).then(function(response) {
-
-  //   console.log("cusinetest");
-  //   console.log(response);
-  // });
-  // // this is a test of asian cuisine count 9.
-  // $.ajax({
-  //   "url": "https://developers.zomato.com/api/v2.1/search?entity_id=279&entity_type=city&q=asian&count=9&"+zomatoApiKey
-  // }).then(function(response) {
-  //   console.log("* asian cusine");
-  //   console.log(response)
-  // });
-  // this is the geolocation function. Currently have it running on a click button.
   x.text("Latitude: " + position.coords.latitude + 
   "<br>Longitude: " + position.coords.longitude);
   // AGmap(lonVar,latVar)
 }
-function AGmap () {
-  var map = new ol.Map({
+
+function zomatoSearch(query){
+  console.log("made it to the code");
+
+  // query = "";
+  // $(".foodSelection").each(function(){
+  //   if($(this).is(":checked")) {
+  //     query = query + $(this).val()+" ";
+  //   }
+  // })
+  //query= query.trim();
+  // console.log(query);
+
+
+  url = "https://developers.zomato.com/api/v2.1/search"+
+          "?entity_type=city"+
+          "&q="+encodeURIComponent(query.trim())+
+          "&count=5"+
+          "&lat="+latVar+
+          "&lon="+lonVar+
+          "&apikey="+zomatoApiKey;
+    console.log(url);
+   $.ajax({
+    "url": url 
+   }).then(function(response) {
+      restaurants = []
+      response.restaurants.forEach(element => {
+        restaurants.push(element.restaurant);    
+      });
+
+      restaurants.sort(function (b, a){
+        diff = ( Number(a.user_rating.aggregate_rating) - Number(b.user_rating.aggregate_rating) );
+        return diff;
+      });
+    //this creates an array for the restaurant output, and by using vue to 
+    //put it in an array let's the HTML function like a template.
+      vueResults.restaurants.splice(0);
+      restaurants.forEach( function(restaurant){
+        restaurant.index = vueResults.restaurants.length;
+        vueResults.restaurants.push(restaurant);
+      });
+
+      
+    //createCards(restaurants);
+
+    updateMap(restaurants);
+      
+     console.log("*");
+     console.log(response);
+   });
+  
+  
+}
+
+
+
+function updateMap(restaurants){
+
+  if (vectorLayer != undefined){
+    map.removeLayer(vectorLayer);
+  }
+  mapPoints = []
+  mapFeatures = []
+  restaurants.forEach (r=> {
+      gpsCoords =[Number(r.location.longitude), Number(r.location.latitude)];
+      mapCoords = ol.proj.fromLonLat(gpsCoords); //converts from GPS coordinates to Open Layer Map coordinates.
+      feature = new ol.Feature({
+        geometry: new ol.geom.Point(mapCoords),
+        restaurant: r
+      })
+      mapFeatures.push(feature);
+      mapPoints.push(mapCoords);
+  });
+
+    // this makes a new layer for the open layers map. 
+  vectorLayer = new ol.layer.Vector({
+    source:new ol.source.Vector({
+      features: mapFeatures,        // add these ol.Features to the lary
+    }),
+    style: new ol.style.Style({
+      image: new ol.style.Icon({
+        anchor: [0.5, 0.5],
+        anchorXUnits: "fraction",
+        anchorYUnits: "fraction",
+        src: "https://upload.wikimedia.org/wikipedia/commons/e/ec/RedDot.svg"
+      })
+    })
+  }); 
+  map.addLayer(vectorLayer);
+  // this is a copied function that does map zoom to pushpins.
+  map.getView().fit(
+    new ol.geom.Polygon([mapPoints]),
+    {
+      duration: 2500,
+      maxZoom: 15,
+      padding: [20,20,20,20]
+    })
+};
+
+function goHere(element){
+  index = Number( $(element).attr("id"))
+  restaurant = vueResults.restaurants[index];
+  console.log(restaurant);
+}
+
+// line up the html appends with the class of the materialize cards underneath the food buttons but above the map.  
+// function createCards(restaurants){
+//   cards = $("#results");
+//   cards.empty();
+
+//   restaurants.forEach(r => {
+//     html = $( "<div>" );
+//     html.append( $('<div class="one">') ).append( $('<img>').attr("src", r.thumb)) ;
+//     // html.append( $('<div class="one">').text(r.name)  );
+//     html.append( $('<div class="one">') ).append( $('<a>').attr("href", r.url).text(r.name)) ;
+//     html.append( $('<div class="one">').text(r.name)  );
+//     html.append( $('<div class="one">').text(r.user_rating.aggregate_rating)  );
+//     html.append( $('<div class="one">').text(r.phone_numbers)  );
+//     html.append( $('<div class="one">').text(r.location.address)  );
+//     html.append( $('<div class="one">').text(r.location.city)  );
+//     r.establishment.forEach (e =>{
+//       html.append( $('<div class="one">').text(e)  );
+//     })
+//     // r.highlights.forEach(h => {
+//     //   html.append( $('<div class="one">').text(h)  );
+//     // })
+//     html.append( $('<div class="one">').text(r.highlights.join(", ")));  
+//     cards.append(html);
+//     console.log(r.name);
+//   });
+
+ 
+// };
+
+
+
+function AGmap(){
+console.log([ lonVar, latVar])
+  map = new ol.Map({  // this is not a global
     target: 'map',
     layers: [
       new ol.layer.Tile({
@@ -69,8 +189,8 @@ function AGmap () {
       })
     ],
     view: new ol.View({
-      center: ol.proj.fromLonLat([ -122.335167, 47.608013]),
-      zoom: 10
+      center: ol.proj.fromLonLat([ lonVar, latVar]),
+      zoom: 12
     })
   });
 }
@@ -103,21 +223,21 @@ new Vue({
       }       
     },
 
-    search: function(queryString) {
-      alert("search for" + queryString)
+    search: function(zomatoSearch) {
+      console.log("search for" + zomatoSearch)
     }
 
   }
 })
 
-new Vue({
-  el: '#example-4',
-  methods: {
-    say: function (message) {
-      alert("yooo2")
-    }
-  }
-})
+// new Vue({
+//   el: '#example-4',
+//   methods: {
+//     say: function (message) {
+//       alert("yooo2")
+//     }
+//   }
+// })
 
 // function displayToggle() {
 //   if (bool) {
