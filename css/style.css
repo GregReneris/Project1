@@ -1,0 +1,121 @@
+/* Custom Stylesheet */
+/**
+ * Use this file to override Materialize files so you can update
+ * the core Materialize files in the future
+ *
+ * Made By MaterializeCSS.com
+ */
+
+.icon-block {
+  padding: 0 15px;
+}
+
+.icon-block .material-icons {
+	font-size: inherit;
+}
+
+nav .logo{
+  margin-left: 50px;
+}
+
+.pic{
+  height: 100px;
+  width: 100px;
+  border-radius: 50px;
+  /* -ms-flex-item-align: center; */
+  /* margin: 0 auto; */
+  /* padding-left: 20%; */
+}
+
+.rowIcons{ 
+  align-content: center;
+}
+
+.light{ 
+  align-content: center;
+  text-align: center;
+}
+.our-pictures2{ 
+  display:flex;
+  justify-content: center;
+}
+
+.slider .btn{
+  margin-top:20px;
+  padding:0 50px;
+  border-radius:1%;
+}
+
+.section-follow .fa-4x{
+  margin: 5px 10px;
+}
+.map {
+  height: 400px;
+  width: 100%;
+}
+
+.card-image img{
+  height: 200px;
+  width: 40px;
+}
+ span:hover{
+  background-color:red;
+  cursor: pointer;
+}
+
+.card-image .night{
+  margin: 0 auto;
+  height: 200px;
+  width:25px;
+  position: fixed;
+}
+
+.night-row{
+  margin:auto;
+}
+
+ .nl:hover{
+  background-color:black;
+  cursor: pointer;
+  color: azure;
+ }
+.pic {
+  height: 100px;
+  width: 100px;
+  border-radius: 50px;
+}
+
+.pic-name {
+  color: white;
+}
+
+.hide {
+  display: none;
+}
+
+.show {
+  display:block;
+}
+
+.item{
+  width:100px;
+  text-align:center;
+  display:block;
+  background-color: transparent;
+  border: 1px solid transparent;
+  margin-right: 10px;
+  margin-bottom: 1px;
+  float: left;
+}
+
+#index-gallery{
+  /* width:465px; */
+  /* padding-left: 39%; */
+}
+
+#resultCards {
+  padding-right: 20%;
+}
+#sidenav-overlay {
+   z-index: 10000;
+   }
