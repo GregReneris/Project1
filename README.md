@@ -1,44 +1,23 @@
-# Vivere 
 
-.Landing page :
-(what the page does + screenshot)
-This is the first page that the user will encounter. Upon opening the page, user have to allow th page to get
-their location informatin, then they will see the image carrosal and have to click the start here button to move 
-to the next step.
+# Project1
 
-.Second page:
-(what the page does + screenshot)
-In this page user will chose between the food option and the nightlife option, upopn chosing one, the user will
-be redirected base on the button they click on.
+# Vivere
 
-.Third page:
-(what the page does + screenshot)
-In this page, The user have the option to chose frome four different options: "American Food", "Italian Food",
-"Asian Food", and "Mexican Food". Each option have a plus (+) button associated with them, upon click on the desired option,
- other options will disappear, and at the same time, new buttons with the cusins associated with that style of food will
- apear beneath the food option, user have to chose on of the cusins offered and will be redirected to the next page.
+Vivere is a web app written in a combination of html, javascript and various API's to find food and drink for your night out.
 
-.Map & restaurant options:
-(what the page does + screenshot)
-In this page the user will see the map of their current location, with pins that are displaying the restaurnts with the user's choise cusin type on the map, underneath, the user will see the list of name of the restaurants along with information about them (
-phone number, address, rating, etc.)
+## Visuals
 
-.Nightlife:
-?
+/// images of things here ///
+![alt text](https://files.slack.com/files-pri/TQ1KWR5HU-FRTQ9FTM3/page_one.jpg)
 
-.Platforms used:
->HTML
->CSS 
->Materialize
->JQuery
->Vue.js
+## Usage
 
-.APIs used:
->Zomato
->Open Layers
+all you have to do is go to /// github link here /// and you are ready to start using the app.
 
-.How it works:
+## Contributing
+Pull requests are welcome. For major changes, please open an issue first to discuss what you would like to change.
 
+Please make sure to update tests as appropriate.
 
-
-
+## Project Status
+As the working period for this project is complete, development has slowed down a lot. I fyou would like to contribute, look to the 'Contributing' section above.
