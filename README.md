@@ -8,7 +8,7 @@ Vivere is a web app written in a combination of html, javascript and various API
 ## Visuals
 
 /// images of things here ///
-![alt text](https://files.slack.com/files-pri/TQ1KWR5HU-FRTQ9FTM3/page_one.jpg)
+![alt text](https://raw.githubusercontent.com/GregReneris/Project1/splash-page-v2/img/readme1.jpg)
 
 ## Usage
 
